@@ -2,7 +2,7 @@
 
 This project is a challenge proposed by [Coletiv](https://coletiv.com/).
 
-Use **Elve TCG Poke** to find Pokemon TCG cards. It uses the https://api.pokemontcg.io/ API.
+Use **Elve TCG Poke** to find Pokemon TCG cards from the https://api.pokemontcg.io/ API.
 
 It's possible to make requests without an API key, even thought it is recommended to use one.
 To build the project with **your** API key, update the `.env` file accordingly.
