@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
 
 class ElveTheme {
-  /// Flutter returns device size in logical pixels and not real pixels.
   static const widthBreakpoints = [360, 420, 640, 768, 1080];
   static const gridCrossAxisCount = [2, 2, 3, 4, 4];
   static const gridMaxWidth = 1080.0;
-  // static const fontFamily = 'WorkSans';
   static const primarySwatch = Colors.blueGrey;
   static const backgroundColor = Color(0xFFF2F3F8);
   static const shadowColor = Color(0xFF3A5160);

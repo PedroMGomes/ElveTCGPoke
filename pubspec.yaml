@@ -72,14 +72,14 @@ flutter:
   # "family" key with the font family name, and a "fonts" key with a
   # list giving the asset and other descriptors for the font. For
   # example:
-  fonts:
-    - family: WorkSans
-      fonts:
-        - asset: assets/fonts/WorkSans-Regular.ttf
-        - asset: assets/fonts/WorkSans-SemiBold.ttf
-          weight: 400
-        - asset: assets/fonts/WorkSans-Bold.ttf
-          weight: 700
+  # fonts:
+  #   - family: WorkSans
+  #     fonts:
+  #       - asset: assets/fonts/WorkSans-Regular.ttf
+  #       - asset: assets/fonts/WorkSans-SemiBold.ttf
+  #         weight: 400
+  #       - asset: assets/fonts/WorkSans-Bold.ttf
+  #         weight: 700
           
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
