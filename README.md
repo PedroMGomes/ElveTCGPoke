@@ -1,9 +1,21 @@
-
 # Elve TCG Poke
 
-This project is a challenge by [Coletiv](https://coletiv.com/).
+This project is a challenge proposed by [Coletiv](https://coletiv.com/).
 
-Use **Elve TCG Poke** to find Pokemon TCG cards.
+Use **Elve TCG Poke** to find Pokemon TCG cards. It uses the https://api.pokemontcg.io/ API.
+
+It's possible to make requests without an API key, even thought it is recommended to use one.
+To build the project with **your** API key, update the `.env` file accordingly.
+
+Since this project uses [envify](https://pub.dev/packages/envify), the **build_runner** run task is required (only if using a custom API key).
+
+1. `flutter pub get`
+2. `flutter pub run build_runner run`
+3. `flutter build <platform>`
+
+### Video
+
+https://youtu.be/oDZ05BoIgF8
 
 ### Features:
 - Search by card name, partil name or type.
@@ -32,9 +44,3 @@ Use **Elve TCG Poke** to find Pokemon TCG cards.
 ![Screenshot_20210503-182824](https://user-images.githubusercontent.com/25188825/116910981-3742b300-ac3e-11eb-9015-62b4cb421d28.png)
 ![Screenshot_20210503-182832](https://user-images.githubusercontent.com/25188825/116910982-37db4980-ac3e-11eb-912f-ad8be409ab1a.png)
 ![Screenshot_20210503-182900](https://user-images.githubusercontent.com/25188825/116910987-3873e000-ac3e-11eb-9545-5cd608211f8b.png)
-
-
-
-
-
-
