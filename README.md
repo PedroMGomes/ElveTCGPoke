@@ -1,5 +1,7 @@
 # Elve TCG Poke
 
+Check the project live (web) at: https://pedromgomes.github.io/ElveTCGPoke/#/
+
 This project is a challenge proposed by [Coletiv](https://coletiv.com/).
 
 Use **Elve TCG Poke** to find Pokemon TCG cards from the https://docs.pokemontcg.io API.
