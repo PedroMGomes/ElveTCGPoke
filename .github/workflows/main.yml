@@ -6,9 +6,11 @@ name: CI
 on:
   # Triggers the workflow on push or pull request events but only for the master branch
   push:
-    branches: [ master ]
+    branches:
+      - master
   pull_request:
-    branches: [ master ]
+    branches:
+      - master
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -26,7 +28,8 @@ jobs:
         with:
           flutter-version: '2.0.5'
       - run: flutter pub get
-      - run: flutter pub run build_runner build --delete-conflicting-outputs
+      #  --delete-conflicting-outputs
+      - run: flutter pub run build_runner build
 #       - run: flutter test
       - run: flutter build web
       
