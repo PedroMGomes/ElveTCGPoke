@@ -4,8 +4,6 @@ import 'package:elve_tcg_poke/api/consts.dart';
 import 'package:elve_tcg_poke/api/models/paged_result.dart';
 import 'package:elve_tcg_poke/api/models/poke_card.dart';
 import 'package:elve_tcg_poke/api/pokemon_tcg.server.dart';
-import 'package:elve_tcg_poke/enums/type_enum.dart';
-import 'package:elve_tcg_poke/utils/card_utils.dart';
 
 /// `/cards`.
 class CardService {
@@ -40,16 +38,9 @@ class CardService {
     int page = 1,
     // String orderBy = '',
   }) async {
-    // lack of time hack.
-    final q = (str2PokeType(query) != PokeType.colorless)
-        ? 'types:$query'
-        : 'name:$query*';
-    final request = _server.req(endpoint: _endpoint, queryParams: {
-      'q': q,
-      'page': '$page',
-      'pageSize': '$pageSize',
-      // 'orderBy': orderBy,
-    });
+    final queryParams = {'page': '$page', 'pageSize': '$pageSize'};
+    if (query.isNotEmpty) queryParams['q'] = query;
+    final request = _server.req(endpoint: _endpoint, queryParams: queryParams);
     final response = await _server.get(request);
     return PagedResult<PokeCard>.fromJson(jsonDecode(response.body));
   }

@@ -69,25 +69,23 @@ class _HomeViewState extends State<HomeView> {
             elevation: 4.0,
             hint: 'Search...',
             autocorrect: true,
+            width: double.infinity,
+            clearQueryOnClose: true,
+            closeOnBackdropTap: true,
+            isScrollControlled: true,
+            controller: this._controller,
+            axisAlignment: 0.0, // center align.
+            openAxisAlignment: 0.0, // center align.
             shadowColor: ElveTheme.shadowColor,
             border: BorderSide(color: Colors.grey.withOpacity(0.1), width: 1.0),
             iconColor: Theme.of(context).primaryColor,
-            controller: this._controller,
-            closeOnBackdropTap: true,
-            clearQueryOnClose: true,
-            // progress: false,
             scrollPadding: const EdgeInsets.only(top: 16.0, bottom: 32.0),
             transitionDuration: const Duration(milliseconds: 512),
             transitionCurve: Curves.easeInOut,
             physics: const BouncingScrollPhysics(),
             borderRadius: BorderRadius.circular(4.0),
-            axisAlignment: 0.0, // center align.
-            openAxisAlignment: 0.0, // center align.
-            width: double.infinity,
-            isScrollControlled: true,
-            onSubmitted: (String query) => _performSearch(context, query),
+            onSubmitted: (query) => _performSearch(context, query),
             debounceDelay: const Duration(milliseconds: 512),
-            onQueryChanged: (String query) {},
             body: CardsBlocConsumer(
               builder: (context, cardList) => CardGridWidget(
                 key: ValueKey('__grid_card_list'),

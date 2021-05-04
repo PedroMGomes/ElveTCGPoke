@@ -4,7 +4,7 @@ import 'package:elve_tcg_poke/components/common/elve_card_image.dart';
 import 'package:elve_tcg_poke/provider/cards_provider.dart';
 import 'package:elve_tcg_poke/theme/elve_theme.dart';
 import 'package:elve_tcg_poke/views/card_view.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/cupertino.dart' show CupertinoPageRoute;
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:provider/provider.dart';
@@ -80,7 +80,7 @@ class _CardGridWidgetState extends State<CardGridWidget> {
           vertical: AppBar().preferredSize.height + 32,
           horizontal: 4.0,
         ),
-        physics: BouncingScrollPhysics(),
+        physics: const BouncingScrollPhysics(),
         controller: _scrollController,
         itemCount: widget.cardList.length,
         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(

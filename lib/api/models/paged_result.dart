@@ -35,10 +35,10 @@ class PagedResultDataConverter<T> implements JsonConverter<T, Object?> {
   @override
   T fromJson(Object? json) {
     if (json is Map<String, dynamic>) {
-      if (json.containsKey('artist') && json.containsKey('number')) {
+      if (json.containsKey('artist') || json.containsKey('number')) {
         // Check for card specific properties .
         return PokeCard.fromJson(json) as T;
-      } else if (json.containsKey('series') &&
+      } else if (json.containsKey('series') ||
           json.containsKey('printedTotal')) {
         // Check for sets specific properties.
         return PokeSet.fromJson(json) as T;
@@ -49,7 +49,7 @@ class PagedResultDataConverter<T> implements JsonConverter<T, Object?> {
       throw Exception('Not expecting a Json int encoded.');
     }
     // return json as T; // only works if json is a valid primitive type.
-    throw Exception('Invalid Json format');
+    throw Exception('$runtimeType - error!');
   }
 
   /// Calls the `toJson` from `T object`. ✅

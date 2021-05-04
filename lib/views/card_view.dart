@@ -61,7 +61,7 @@ class _CardViewState extends State<CardView> with TickerProviderStateMixin {
               alignment: Alignment.topCenter,
               children: [
                 ListView(
-                  physics: BouncingScrollPhysics(),
+                  physics: const BouncingScrollPhysics(),
                   padding: const EdgeInsets.symmetric(horizontal: 16.0),
                   controller: scrollController,
                   children: [

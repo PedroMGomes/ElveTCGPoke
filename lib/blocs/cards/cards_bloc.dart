@@ -1,10 +1,13 @@
 import 'dart:async';
+import 'dart:math';
 
 import 'package:bloc/bloc.dart';
 import 'package:elve_tcg_poke/api/exceptions/pokemon_tcg_exception.dart';
 import 'package:elve_tcg_poke/api/exceptions/pokemon_tcg_exceptions.dart';
 import 'package:elve_tcg_poke/api/models/poke_card.dart';
 import 'package:elve_tcg_poke/api/pokemon_tcg.client.dart';
+import 'package:elve_tcg_poke/enums/type_enum.dart';
+import 'package:elve_tcg_poke/utils/card_utils.dart';
 import 'package:elve_tcg_poke/utils/elve_logger.dart';
 import 'package:meta/meta.dart';
 
@@ -12,11 +15,15 @@ part 'cards_event.dart';
 part 'cards_state.dart';
 
 class CardsBloc extends Bloc<CardsEvent, CardsState> {
+  static const _max = 440;
   final PokemonTCGClient client;
 
   CardsBloc(this.client) : super(CardsInitial());
 
-  /// List of loaded cards.
+  /// List of page numbers that were already loaded.
+  List<int> _pages = List<int>.generate(_max, (index) => index + 1);
+
+  /// List of loaded random cards.
   List<PokeCard> _cardList = [];
 
   List<PokeCard> get cardList =>
@@ -33,20 +40,42 @@ class CardsBloc extends Bloc<CardsEvent, CardsState> {
     if (event is GetCards) {
       elveLogger.d('$runtimeType --> Page: ${event.page}');
       try {
-        if (event.page == 1) {
-          _cardList = [];
-          // Only yields Loading event if a new search is made.
-          yield CardsLoading();
+        var nextPage = event.page;
+        if (event.query.isEmpty) {
+          if (event.page == 1) {
+            // Shuffle button was pressed.
+            yield CardsLoading();
+            _pages = List<int>.generate(_max, (index) => index + 1);
+            _cardList.clear();
+            _cardList = [];
+          }
+          // Get random Page, from 0 to max exclusive.
+          final randomPageIndex = Random().nextInt(_pages.length);
+          nextPage = _pages[randomPageIndex];
+          _pages.removeAt(randomPageIndex);
+        } else {
+          // Card List View - has a query.
+          if (event.page == 1) {
+            yield CardsLoading();
+            _cardList.clear();
+            _cardList = [];
+          }
+        }
+        var query = event.query;
+        if (query.isNotEmpty) {
+          query = (str2PokeType(event.query) != PokeType.colorless)
+              ? 'types:${event.query}'
+              : 'name:${event.query}*';
         }
         final pagedResult = await client.cards.cards(
+          query: query,
+          page: nextPage,
           pageSize: event.pageSize,
-          page: event.page,
-          query: event.query,
         );
         _cardList.addAll(pagedResult.data);
         yield CardsDone(
-          query: event.query,
           cardList: _cardList,
+          query: event.query,
           currentPage: pagedResult.page,
           pageSize: pagedResult.pageSize,
           total: pagedResult.totalCount,

@@ -108,7 +108,7 @@ class RestorableCardsBloc extends RestorableValue<CardsBloc> {
         authority: Env.authority,
         apiKey: Env.apiKey,
       )))
-        ..add(GetCards(page: 1, pageSize: 30)); // TODO random page.
+        ..add(GetCards(page: 1, pageSize: 30));
 
   /// Check State update.
   @override
