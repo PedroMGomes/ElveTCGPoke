@@ -20,7 +20,7 @@ Since this project uses [envify](https://pub.dev/packages/envify), the **build_r
 https://youtu.be/oDZ05BoIgF8
 
 ### Features:
-- Search by card name, partil name or type.
+- Search by card name, partial name or type.
 - Infinite Scroller with Paged Results.
 - Image caching with [extended_image](https://pub.dev/packages/extended_image).
 - Json Serialization.
